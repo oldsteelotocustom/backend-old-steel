@@ -1,4 +1,4 @@
-package com.oldsteel.oto.entity;
+package com.oldsteel.entity;
 
 import javax.persistence.*;
 
