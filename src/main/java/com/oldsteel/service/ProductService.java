@@ -5,6 +5,8 @@ import com.oldsteel.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class ProductService {
@@ -14,5 +16,9 @@ public class ProductService {
     public Product saveProduct(Product product){
         product.setAvailability(true);
         return productRepo.save(product);
+    }
+
+    public List<Product> getAllProducts(){
+        return productRepo.findAll();
     }
 }
