@@ -1,5 +1,6 @@
 package com.oldsteel.entity;
 
+import com.oldsteel.dto.request.CategoryRequestDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,4 +30,11 @@ public class Category {
             joinColumns = { @JoinColumn(name = "category_id") },
             inverseJoinColumns = { @JoinColumn(name = "product_id") })
     private List<Product> products = new ArrayList<>();
+
+
+    public static Category saveFrom(CategoryRequestDto categoryDto){
+        var category = new Category();
+        category.setCategoryName(categoryDto.getCategoryName());
+        return category;
+    }
 }
