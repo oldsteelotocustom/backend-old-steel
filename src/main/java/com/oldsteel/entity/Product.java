@@ -23,6 +23,7 @@ public class Product {
     @Column(name = "price", nullable = false)
     private BigDecimal productPrice;
     private boolean availability;
+    private int stocks;
 
     public static Product saveFrom(ProductRequestDto productDto){
         var product = new Product();
