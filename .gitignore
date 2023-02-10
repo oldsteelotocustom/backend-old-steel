@@ -33,3 +33,4 @@ build/
 .vscode/
 /src/main/resources/application.properties
 /src/main/resources/application-dev.properties
+/src/test/java/com/oldsteel/oto/entity/ProductTest.java
