@@ -19,7 +19,7 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String product_name;
-    private BigDecimal price;
+    private String productName;
+    private BigDecimal productPrice;
     private boolean availability;
 }
