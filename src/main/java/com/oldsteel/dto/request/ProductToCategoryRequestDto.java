@@ -7,9 +7,9 @@ import lombok.*;
 @AllArgsConstructor @NoArgsConstructor @ToString
 public class ProductToCategoryRequestDto {
 
-    @JsonProperty("category_id")
-    private Long categoryId;
-
     @JsonProperty("product_id")
     private Long productId;
+
+    @JsonProperty("category_id")
+    private Long categoryId;
 }
