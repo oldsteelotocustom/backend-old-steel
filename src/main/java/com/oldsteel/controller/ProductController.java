@@ -1,15 +1,18 @@
 package com.oldsteel.controller;
 
 import com.oldsteel.dto.request.ProductRequestDto;
+import com.oldsteel.dto.request.ProductToCategoryRequestDto;
 import com.oldsteel.dto.response.ProductResponseDto;
 import com.oldsteel.entity.Product;
 import com.oldsteel.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/product")
@@ -28,11 +31,21 @@ public class ProductController {
 
     @GetMapping("/all")
     public ResponseEntity<?> findAllProduct(){
-        var productResponse = new ProductResponseDto();
         var products = productService.getAllProducts();
-        for(Product product : products){
-            productResponse = ProductResponseDto.dataFrom(product);
+        if(products.isEmpty()){
+            return new ResponseEntity<>("Product not found", HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(productResponse, HttpStatus.OK);
+        List<ProductResponseDto> productResponsesList = new ArrayList<>();
+        for(Product product : products){
+            productResponsesList.add(ProductResponseDto.dataFrom(product));
+        }
+        return new ResponseEntity<>(productResponsesList, HttpStatus.OK);
+    }
+
+    @PostMapping("/add-category")
+    public ResponseEntity<?> insertProductToCategory(@RequestBody ProductToCategoryRequestDto toCategoryRequestDto){
+        productService.insertBookToCategory(toCategoryRequestDto.getProductId(), toCategoryRequestDto.getCategoryId());
+        log.info("saved data successfully");
+        return new ResponseEntity<>("product has been add", HttpStatus.OK);
     }
 }
