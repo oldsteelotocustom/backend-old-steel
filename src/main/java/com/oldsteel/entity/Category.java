@@ -1,5 +1,6 @@
 package com.oldsteel.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.oldsteel.dto.request.CategoryRequestDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,8 +8,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Getter @Setter
@@ -21,12 +22,10 @@ public class Category {
 
     private String categoryName;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "categories_tbl",
-            joinColumns = { @JoinColumn(name = "category_id") },
-            inverseJoinColumns = { @JoinColumn(name = "product_id") })
-    private List<Product> products = new ArrayList<>();
-
+    @JsonManagedReference
+    @ManyToMany(mappedBy = "categories",
+            cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    private Set<Product> products = new HashSet<>();
 
     public static Category saveFrom(CategoryRequestDto categoryDto){
         var category = new Category();
