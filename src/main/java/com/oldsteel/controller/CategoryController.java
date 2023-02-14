@@ -1,7 +1,6 @@
 package com.oldsteel.controller;
 
 import com.oldsteel.dto.request.CategoryRequestDto;
-import com.oldsteel.dto.request.ProductToCategoryRequestDto;
 import com.oldsteel.entity.Category;
 import com.oldsteel.service.CategoryService;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @Slf4j
 public class CategoryController {
-
     private final CategoryService categoryService;
 
     @PostMapping("/save")
@@ -24,15 +22,18 @@ public class CategoryController {
         return new ResponseEntity<>("Category saved successfully", HttpStatus.CREATED);
     }
 
-    @PutMapping("/add-product")
-    public ResponseEntity<?> insertProductToCategory(@RequestBody ProductToCategoryRequestDto toCategoryRequestDto){
-        if(toCategoryRequestDto.getProductId().equals(0L)){
-            return new ResponseEntity<>("", HttpStatus.BAD_REQUEST);
-        } else if (toCategoryRequestDto.getCategoryId().equals(0L)) {
-            return new ResponseEntity<>("", HttpStatus.BAD_REQUEST);
+    @GetMapping("/all")
+    public ResponseEntity<?> findAllCategories(){
+        var categories = categoryService.getAllCategories();
+        if(categories.isEmpty()){
+            return new ResponseEntity<>("Categories not found...", HttpStatus.NOT_FOUND);
         }
-        categoryService.insertBookToCategory(toCategoryRequestDto.getCategoryId(),
-                toCategoryRequestDto.getProductId());
-        return new ResponseEntity<>("Category has been added to product...", HttpStatus.OK);
+        return new ResponseEntity<>(categories, HttpStatus.OK);
+    }
+
+    @GetMapping()
+    public ResponseEntity<?> findCategoryById(@RequestParam Long categoryId){
+        var category = categoryService.findById(categoryId);
+        return new ResponseEntity<>(category, HttpStatus.OK);
     }
 }
