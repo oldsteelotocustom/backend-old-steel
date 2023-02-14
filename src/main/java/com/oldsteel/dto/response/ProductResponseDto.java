@@ -20,7 +20,7 @@ public class ProductResponseDto {
         var productResponse = new ProductResponseDto();
         productResponse.setProductName(product.getProductName());
         productResponse.setProductPrice(product.getProductPrice());
-        productResponse.setStocks(productResponse.getStocks());
+        productResponse.setStocks(product.getStocks());
         return productResponse;
     }
 
