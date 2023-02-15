@@ -21,7 +21,11 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    private String productCode;
+
     private String productName;
+
     @Convert(converter = BigDecimalConverter.class)
     @Column(name = "price", nullable = false)
     private BigDecimal productPrice;
