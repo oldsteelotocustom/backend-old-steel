@@ -20,8 +20,6 @@ import java.util.List;
 @RequiredArgsConstructor
 @Slf4j
 public class ProductController {
-    private final ProductRepository productRepository;
-
     private final ProductService productService;
 
     @PostMapping("/save")
