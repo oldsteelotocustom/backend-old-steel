@@ -12,11 +12,18 @@ import java.util.Date;
 public class PostArticle {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String title;
+    @Lob
+    @Column(name = "body_article")
+    // columnDefinition = "TEXT", length = 2000)
     private String body;
-    private Date createDate;
     private String author;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date creationDate;
+
 
 
 }
