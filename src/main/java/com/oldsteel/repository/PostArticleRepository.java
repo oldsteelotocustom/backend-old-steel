@@ -10,5 +10,5 @@ import java.util.List;
 @Repository
 public interface PostArticleRepository extends JpaRepository<PostArticle, Long> {
 
-    List<PostArticle> findPostArticleOrderByCreationDate(Pageable pageable);
+    List<PostArticle> findPostArticleOrderByCreationDate(String title);
 }
