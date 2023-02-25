@@ -1,6 +1,7 @@
 package com.oldsteel.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.oldsteel.dto.request.PostCategoryRequestDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,4 +26,10 @@ public class PostCategory {
     @ManyToMany(mappedBy = "postCategories",
             cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     private Set<PostArticle> postArticles = new HashSet<>();
+
+    public static PostCategory saveFrom(PostCategoryRequestDto categoryRequest){
+        var postCategory = new PostCategory();
+        postCategory.setCategoryName(categoryRequest.getCategoryName());
+        return postCategory;
+    }
 }
