@@ -1,11 +1,8 @@
 package com.oldsteel.dto.request;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
-@AllArgsConstructor
+@AllArgsConstructor @NoArgsConstructor
 @Getter @Setter @ToString
 public class PostCategoryRequestDto {
 
