@@ -10,7 +10,7 @@ import javax.validation.constraints.Size;
 public class PostArticleRequest {
 
     @NotBlank(message = "Title must be written")
-    @Size(min = 20, max = 100, message = "Min title must be 20 characters")
+    @Size(min = 20, max = 100, message = "Title must be 20 characters")
     private String title;
 
     @NotBlank(message = "Body of article or post cannot be blank")
