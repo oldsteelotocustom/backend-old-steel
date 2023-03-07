@@ -9,7 +9,7 @@ import javax.validation.constraints.Size;
 @Getter @Setter @ToString
 public class PostArticleRequest {
 
-    @NotBlank(message = "Title name must be written")
+    @NotBlank(message = "Title must be written")
     @Size(min = 20, max = 100, message = "Min title must be 20 characters")
     private String title;
 
