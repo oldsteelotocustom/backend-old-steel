@@ -25,4 +25,8 @@ public class ProductCategoryService {
     public Optional<ProductCategory> findById(Long categoryId){
         return categoryRepo.findById(categoryId);
     }
+
+    public void deleteProductCategory(Long productCategoryId){
+        categoryRepo.deleteById(productCategoryId);
+    }
 }
