@@ -13,6 +13,6 @@ import javax.validation.constraints.Size;
 public class CategoryRequestDto {
 
     @NotBlank(message = "Product category name cannot be blank")
-    @Size(min = 20, message = "The length must be at least 20 characters")
+    @Size(min = 4, message = "The length must be at least 20 characters")
     private String categoryName;
 }
