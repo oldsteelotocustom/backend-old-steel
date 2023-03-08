@@ -14,7 +14,7 @@ import java.util.Set;
 @Entity
 @Getter @Setter
 @AllArgsConstructor @NoArgsConstructor
-public class Category {
+public class ProductCategory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,12 +23,12 @@ public class Category {
     private String categoryName;
 
     @JsonManagedReference
-    @ManyToMany(mappedBy = "categories",
+    @ManyToMany(mappedBy = "productCategories",
             cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     private Set<Product> products = new HashSet<>();
 
-    public static Category saveFrom(CategoryRequestDto categoryDto){
-        var category = new Category();
+    public static ProductCategory saveFrom(CategoryRequestDto categoryDto){
+        var category = new ProductCategory();
         category.setCategoryName(categoryDto.getCategoryName());
         return category;
     }

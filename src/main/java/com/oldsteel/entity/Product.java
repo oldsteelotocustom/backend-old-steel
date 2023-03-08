@@ -38,7 +38,7 @@ public class Product {
     @JoinTable(name = "categories_product_tbl",
             joinColumns = @JoinColumn(name = "product_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id"))
-    private Set<Category> categories = new HashSet<>();
+    private Set<ProductCategory> productCategories = new HashSet<>();
 
     public static Product saveFrom(ProductRequestDto productDto){
         var product = new Product();
