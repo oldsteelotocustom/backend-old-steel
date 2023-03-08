@@ -53,4 +53,10 @@ public class ProductCategoryController {
         }
         return new ResponseEntity<>(ProductCategoryResponseDto.dataFrom(category.get()), HttpStatus.OK);
     }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> deleteProductCategory(@PathVariable("id") Long productCategoryId){
+        productCategoryService.deleteProductCategory(productCategoryId);
+        return new ResponseEntity<>("Product deleted successfully", HttpStatus.OK);
+    }
 }
