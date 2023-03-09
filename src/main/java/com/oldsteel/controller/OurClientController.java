@@ -37,12 +37,30 @@ public class OurClientController {
     public ResponseEntity<?> getAllClientName(){
         var clients = clientService.getAllOurClient();
         if(clients.isEmpty()){
-            return new ResponseEntity<>("Client is null", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Client is not found...", HttpStatus.NOT_FOUND);
         }
         List<OurClientNameResponseDto> clientResponses = new ArrayList<>();
         for (OurClient ourClient: clients) {
             clientResponses.add(OurClientNameResponseDto.dataFrom(ourClient));
         }
         return new ResponseEntity<>(clientResponses, HttpStatus.OK);
+    }
+
+    @PutMapping("/edit")
+    public ResponseEntity<?> updateClientName(@RequestBody @Valid OurClientRequestDto ourClientRequestDto,
+                                              @RequestParam(required = true) Long clientId,
+                                              Errors errors){
+        if(errors.hasErrors()){
+            return new ResponseEntity<>(ErrorMessages.throwError(errors), HttpStatus.BAD_REQUEST);
+        }
+        var clientName = clientService.editName(ourClientRequestDto.getOurClientName(), clientId);
+        log.info("Clien name is: {}", clientName.getOurClientName());
+        return new ResponseEntity<>("Edit name done successfully to: " + clientName.getOurClientName(), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> deleteClientById(@PathVariable("id") long id){
+        clientService.deleteClient(id);
+        return new ResponseEntity<>("Delete our client name successfully", HttpStatus.OK);
     }
 }
