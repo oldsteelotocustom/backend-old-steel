@@ -4,7 +4,6 @@ import com.oldsteel.dto.request.ProductRequestDto;
 import com.oldsteel.dto.request.ProductToCategoryRequestDto;
 import com.oldsteel.dto.response.ProductResponseDto;
 import com.oldsteel.entity.Product;
-import com.oldsteel.repository.ProductRepository;
 import com.oldsteel.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
