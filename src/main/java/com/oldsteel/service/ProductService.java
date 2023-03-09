@@ -1,6 +1,7 @@
 package com.oldsteel.service;
 
 import com.oldsteel.entity.Product;
+import com.oldsteel.exception.ProductNotFoundException;
 import com.oldsteel.helper.ProductCodeGenerator;
 import com.oldsteel.repository.ProductCategoryRepository;
 import com.oldsteel.repository.ProductRepository;
@@ -40,7 +41,8 @@ public class ProductService {
     }
 
     public Optional<Product> findProductById(Long productId){
-        return productRepo.findById(productId);
+        var product = productRepo.findById(productId).orElseThrow(() -> new ProductNotFoundException("Product Not found..."));
+        return Optional.of(product);
     }
 
     public Product findProductByCode(String productCode){
