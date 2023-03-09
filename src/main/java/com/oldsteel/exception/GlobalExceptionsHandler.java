@@ -35,4 +35,10 @@ public class GlobalExceptionsHandler {
         List<String> error = Collections.singletonList(ex.getMessage());
         return new ResponseEntity<>(errMessage(error), new HttpHeaders(), HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler(OurClientNotFountException.class)
+    public ResponseEntity<Map<String, List<String>>> OurClientNotFound(OurClientNotFountException ex){
+        List<String> error = Collections.singletonList(ex.getMessage());
+        return new ResponseEntity<>(errMessage(error), new HttpHeaders(), HttpStatus.NOT_FOUND);
+    }
 }
